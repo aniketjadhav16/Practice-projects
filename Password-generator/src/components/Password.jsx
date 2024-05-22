@@ -1,10 +1,17 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState, useRef } from "react";
 
 const Password = () => {
     const [length, setLength] = useState(4);
     const [numberAllowed, setNumberAllowed] = useState(false);
     const [charAllowed, setCharAllowed] = useState(false);
     const [password, setPassword] = useState("");
+
+    const passwordRef = useRef(null)
+
+    const copyToClipBoard = useCallback(() => {
+        passwordRef.current?.se
+        Window.navigator.clipboard.writeText(password)
+    }, [password])
 
     const passwordField = useCallback(() => {
         let pass = "";
@@ -35,9 +42,11 @@ const Password = () => {
                         className="border border-gray-300 p-2 rounded w-full"
                         value={password}
                         placeholder="Password"
+                        ref={passwordRef}
                         readOnly
                     />
                 </div>
+                <button onClick={copyToClipBoard}>Copy</button>
             </div>
 
             <div className="mb-4">
